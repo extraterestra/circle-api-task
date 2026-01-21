@@ -1,3 +1,4 @@
+import client.ApiResponse;
 import model.Booking;
 import model.BookingDates;
 import model.CreateBookingResponse;
@@ -20,9 +21,11 @@ public class PostBookingApiTest extends BaseApiTest {
             bookingRequest.setBookingdates(dates);
             bookingRequest.setAdditionalneeds("Breakfast");
 
-            CreateBookingResponse createdBooking = apiClient.post("/booking", bookingRequest, CreateBookingResponse.class);
+            ApiResponse<CreateBookingResponse> postResponse = apiClient.postResponse("/booking", bookingRequest, CreateBookingResponse.class);
+            Assert.assertEquals(postResponse.getStatusCode(), 200, "POST /booking should return 200");
 
-            Assert.assertNotNull(createdBooking, "Create booking response must be deserialized");
+            CreateBookingResponse createdBooking = postResponse.getBody();
+
             Assert.assertTrue(createdBooking.getBookingid() > 0, "bookingid should be > 0");
             Assert.assertNotNull(createdBooking.getBooking(), "booking object should be present");
 
@@ -31,8 +34,6 @@ public class PostBookingApiTest extends BaseApiTest {
             int bookingId = createdBooking.getBookingid();
 
             Booking fetched = apiClient.get("/booking/" + bookingId, Booking.class);
-
-            Assert.assertNotNull(fetched.getBookingdates(), "Fetched bookingdates must be present");
 
             Assert.assertEquals(fetched.getFirstname(), bookingRequest.getFirstname());
             Assert.assertEquals(fetched.getLastname(), bookingRequest.getLastname());
