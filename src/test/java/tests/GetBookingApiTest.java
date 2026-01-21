@@ -1,8 +1,9 @@
+package tests;
+
 import client.ApiResponse;
 import model.Booking;
 import model.BookingId;
 import org.testng.Assert;
-import org.testng.SkipException;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;

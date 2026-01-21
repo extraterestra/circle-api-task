@@ -1,3 +1,5 @@
+package tests;
+
 import client.ApiResponse;
 import model.Booking;
 import model.CreateBookingResponse;

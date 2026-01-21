@@ -1,3 +1,5 @@
+package tests;
+
 import client.ApiClient;
 import config.FrameworkConfig;
 import org.testng.annotations.BeforeClass;
