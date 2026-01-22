@@ -16,6 +16,24 @@ Select env via Maven system property `env`:
 ## Run tests
 Run from project root (where `pom.xml` is).
 
+### TestNG suites (smoke vs regression)
+This project uses TestNG suite XML files:
+- `src/test/resources/testng-smoke.xml` (smoke: only `CreateBookingTest`)
+- `src/test/resources/testng-regression.xml` (regression: all tests in package `tests`)
+
+Run via Maven profiles:
+- **Smoke**:
+
+```bash
+mvn test -Psmoke -Denv=qa
+```
+
+- **Regression**:
+
+```bash
+mvn test -Pregression -Denv=qa
+```
+
 ### Run all tests (per env)
 - **QA**:
 
