@@ -22,6 +22,11 @@ public class DeleteBookingTest extends BaseApiTest {
                 .jsonPath()
                 .getString("token");
 
+        Assert.assertNotNull(token, "Auth token should not be null");
+        Assert.assertFalse(token.isBlank(), "Auth token should not be blank");
+
+        // delete normally should return 200 or 204, but in documentation we have 201 Created as expected result
+        //docs and this test expected results should be fixed
         Assert.assertEquals(
                 bookingControllerSpec.deleteBookingResponse(String.valueOf(bookingId), token).statusCode(),
                 201

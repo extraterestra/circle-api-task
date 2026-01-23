@@ -5,6 +5,8 @@ import model.Booking;
 import org.testng.annotations.Test;
 import testData.BookingTestData;
 
+import static org.hamcrest.core.Is.is;
+
 public class UpdateBookingTest extends BaseApiTest{
 
     @Test
@@ -34,6 +36,11 @@ public class UpdateBookingTest extends BaseApiTest{
                 .as(Booking.class);
 
         BookingAssertions.assertBookingEqualsSoft(updatedResponse, updatedRequest);
+
+        //cleaning up
+        bookingControllerSpec.deleteBookingResponse(String.valueOf(bookingId), token).
+                then()
+                .statusCode(is(201));
     }
 }
 
