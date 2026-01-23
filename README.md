@@ -1,5 +1,8 @@
 # API Test Framework (RestAssured + TestNG)
 
+This framework was created according to the Restful Booker API documentation:
+- `https://restful-booker.herokuapp.com/apidoc/index.html`
+
 ## Requirements
 - **Java**: JDK **24** (project is currently compiled with `maven.compiler.source/target=24` in `pom.xml`)
 - **Maven**: 3.9+
